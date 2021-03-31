@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] %d %level %logger{10}- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--按天滚动日志-->
+    <appender name="accessHistoryLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/Users/yangxiaoxiao/Documents/projects_test/first-springmvc/out/history.%d.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%thread] %d %level %logger{10}- %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="debug">
+        <appender-ref ref="console"/>
+    </root>
+    <!--additivity为true时，也会往console中输出，false时只会写在指定文件-->
+    <logger name="com.imooc.interceptor.AccessHistoryInterceptor" level="info" additivity="false">
+        <appender-ref ref="accessHistoryLog"/>
+    </logger>
+</configuration>

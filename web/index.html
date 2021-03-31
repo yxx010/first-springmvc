@@ -75,6 +75,8 @@
                     method:"get",
                     dataType:"json",
                     success:function(json){
+                        //清空persons下的子标签
+                        $("#persons").empty();
                         for (var i=0;i<json.length;i++) {
                             var p=json[i];
                             $("#persons").append("<h2>"+p.name+"-"+p.age+"-"+p.date+"</h2>");

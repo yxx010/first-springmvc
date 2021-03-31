@@ -7,6 +7,18 @@
     <groupId>com.imooc</groupId>
     <artifactId>first-springmvc</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <repositories>
         <repository>
             <id>aliyun</id>
@@ -55,12 +67,12 @@
         <!--使用拦截器拦截器-Interceptor
         *拦截器(Interceptor)用于对URL请求进行前置/后置过滤
         *Interceptor与Filter用途相似，但实现方式不同
-        *Interceptor底层就是基于Spring AOP面向切面编程实现 -->
+        *Interceptor底层就是基于Spring AOP面向切面编程实现
+        provided开发编译时使用，打包发布时不用-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
-            <!--开发编译时使用，打包发布时不用-->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -68,6 +80,12 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>compile</scope>
+        </dependency>
+        <!--日志输出-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
         </dependency>
 
     </dependencies>

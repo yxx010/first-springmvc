@@ -32,8 +32,29 @@
     </mvc:annotation-driven>
     <!--将图片/JS/CSS等静态资源排除在外，可提高执行效率-->
     <mvc:default-servlet-handler/>
-
-
+    <!--配置拦截器 /one,/one/two,/**是所有请求，/*只拦截/one-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/restful/**"/>
+            <mvc:exclude-mapping path="/**.ico"/>
+            <mvc:exclude-mapping path="/**.js"/>
+            <mvc:exclude-mapping path="/**.css"/>
+            <mvc:exclude-mapping path="/resources/**"/>
+            <bean class="com.imooc.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/restful/**"/>
+            <mvc:exclude-mapping path="/**.ico"/>
+            <mvc:exclude-mapping path="/**.js"/>
+            <mvc:exclude-mapping path="/**.css"/>
+            <mvc:exclude-mapping path="/resources/**"/>
+            <bean class="com.imooc.interceptor.MyInterceptor1"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/restful/**"/>
+            <bean class="com.imooc.interceptor.AccessHistoryInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!--启用freemarker参数-->
     <bean id="ViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <!--设置相应输出，并解决中文乱码-->
@@ -53,6 +74,4 @@
             </props>
         </property>
     </bean>
-
-
 </beans>
